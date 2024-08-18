@@ -1,0 +1,18 @@
+version: '1.0'
+
+services:
+  AI:
+    image: torchserver
+    restart: always
+    working_dir: /lab
+    volumes:
+      - ./:/lab
+    ports:
+      - "8811:8811"
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: all
+              capabilities: [ gpu ]
